@@ -1,0 +1,35 @@
+<div class="well">
+    <div class="container well" style="width: 100%;height: 25rem;">
+        <nav class="navbar" style="background-color:black!important;">
+            <span style="color: white;font-size: 20px;text-align: center;margin-left: 9rem;">
+                BASKET Welcome {{USER}}
+            </span>
+        </nav>
+        <hr>
+
+        <div class="card" style="width: 100%;">
+            <a routerLink="ADD_ITEMS" class="btn btn-primary">
+                <h5 class="card-title">Add Items</h5>
+            </a>
+        </div>
+
+        <div class="card" style="width: 100%;">
+            <a routerLink="MANAGE_ITEMS" class="btn btn-primary">
+                <h5 class="card-title">My Basket</h5>
+            </a>
+        </div>
+
+        <div class="card" style="width: 100%;">
+            <a routerLink="ALL_ITEMS" class="btn btn-primary">
+                <h5 class="card-title">Basket</h5>
+            </a>
+        </div>
+
+        <div class="card" style="width: 100%;">
+            <a (click)="back()" class="btn btn-danger">
+                <h5 class="card-title">Back</h5>
+            </a>
+        </div>
+
+    </div>
+</div>

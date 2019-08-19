@@ -1,0 +1,71 @@
+<div class="well" *ngIf="!show">
+    <div class="container well" style="width: 100%;height: 25rem;">
+        <nav class="navbar" style="background-color:black!important;">
+            <span style="color: white;font-size: 20px;text-align: center;margin-left: 9rem;">
+                BASKET Welcome {{USER}}
+            </span>
+        </nav>
+        <div>
+            <table class="table" style="width:100%" align="center">
+
+                <thead class="table-header">
+                    <tr>
+                        <th>Srno</th>
+                        <th>Item Name</th>
+                        <th>To Name</th>
+                        <th>Check</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <tr *ngFor="let i of itemlist;let j = index">
+                        <td>{{j+1}}</td>
+                        <td>{{i.itemName}}</td>
+                        <td>{{i.toName}}</td>
+
+                        <td *ngIf="i.Check">
+                            <i class="material-icons checkboxGreen">done</i>
+                        </td>
+                        <td *ngIf="!i.Check">
+                            <i class="material-icons checkboxRed">clear</i>
+                        </td>
+                        <td>
+                            <button type="button" (click)="getDetails(i)" class="btn-primary">
+                                <i class="material-icons">edit</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group" class="col-md-12">
+            <button type="button" class="btn btn-primary" (click)="backFast()" style="width:100%;">
+                Back
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="show">
+    <div class="container well" style="width: 100%;height: 25rem;">
+        <nav class="navbar" style="background-color:black!important;">
+            <span style="color: white;font-size: 20px;text-align: center;margin-left: 9rem;">
+                BASKET Welcome {{USER}}
+            </span>
+        </nav>
+        <h1>{{detailedList.itemName}}</h1>
+
+        {{detailedList.toName}} : Bring {{detailedList.quantity}} {{detailedList.itemName}} on {{detailedList.date}}
+        from {{detailedList.fromPlace}} for {{detailedList.fromName}},{{detailedList.comments}}.
+    </div>
+    <div class="row">
+
+        <div class="form-group" class="col-md-12">
+            <button type="button" class="btn btn-primary" (click)="back()" style="width:100%;">
+                Go Back
+            </button>
+        </div>
+
+    </div>
+</div>

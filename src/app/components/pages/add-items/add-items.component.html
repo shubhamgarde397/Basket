@@ -1,0 +1,92 @@
+<div class="container well" style="width: 100%;height: 25rem;">
+    <nav class="navbar" style="background-color:black!important;">
+        <span style="color: white;font-size: 20px;text-align: center;margin-left: 9rem;">
+            BASKET Welcome {{USER}}
+        </span>
+    </nav>
+
+    <form [formGroup]="myFormGroup" (ngSubmit)="addItems(myFormGroup)" submitted=true enctype="multipart/form data"
+        action="/" name="myform" id="myform">
+
+        <div class="form-group row">
+
+            <div class="col-md-12">
+                <select id="toName" class="form-control" formControlName="toName">
+                    <option selected>Select Name</option>
+                    <option *ngFor="let i of toMembers">
+                        <span>{{i.name}}</span>
+                    </option>
+                </select>
+            </div>
+            <div class="col-xs-3">
+                <div [hidden]="myFormGroup.controls.toName.valid">
+                    <font color="red">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </font>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <input type="date" autocomplete="off" id="date" class="form-control" formControlName="date"
+                    placeholder="Date" style="width:100%;">
+                <hr [hidden]="myFormGroup.controls.date.valid"
+                    style="color:red;background-color: red;height: 2px;margin-top:1px;">
+                <hr [hidden]="!myFormGroup.controls.date.valid"
+                    style="color:none;background-color: none;height: 2px;margin-top:1px;">
+            </div>
+
+            <div class="col-md-12">
+                <input type="text" autocomplete="off" id="itemName" class="form-control" formControlName="itemName"
+                    placeholder="Item Name" style="width:100%;">
+                <hr [hidden]="myFormGroup.controls.itemName.valid"
+                    style="color:red;background-color: red;height: 2px;margin-top:1px;">
+                <hr [hidden]="!myFormGroup.controls.itemName.valid"
+                    style="color:none;background-color: none;height: 2px;margin-top:1px;">
+            </div>
+
+            <div class="col-md-12">
+                <input type="text" autocomplete="off" id="quantity" class="form-control" formControlName="quantity"
+                    placeholder="Quantity" style="width:100%;">
+                <hr [hidden]="myFormGroup.controls.quantity.valid"
+                    style="color:red;background-color: red;height: 2px;margin-top:1px;">
+                <hr [hidden]="!myFormGroup.controls.quantity.valid"
+                    style="color:none;background-color: none;height: 2px;margin-top:1px;">
+            </div>
+
+            <div class="col-md-12">
+                <input type="text" autocomplete="off" id="fromPlace" class="form-control" formControlName="fromPlace"
+                    placeholder="Place" style="width:100%;">
+                <hr [hidden]="myFormGroup.controls.fromPlace.valid"
+                    style="color:red;background-color: red;height: 2px;margin-top:1px;">
+                <hr [hidden]="!myFormGroup.controls.fromPlace.valid"
+                    style="color:none;background-color: none;height: 2px;margin-top:1px;">
+            </div>
+
+            <div class="col-md-12">
+                <input type="text" autocomplete="off" id="comments" class="form-control" formControlName="comments"
+                    placeholder="Comments" style="width:100%;">
+                <hr [hidden]="myFormGroup.controls.comments.valid"
+                    style="color:red;background-color: red;height: 2px;margin-top:1px;">
+                <hr [hidden]="!myFormGroup.controls.comments.valid"
+                    style="color:none;background-color: none;height: 2px;margin-top:1px;">
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group" class="col-md-12">
+                <button type="submit" class="btn btn-primary" [disabled]='!myFormGroup.valid' style="width:100%;">
+                    Add
+                </button>
+            </div>
+
+            <div class="form-group" class="col-md-12">
+                <button type="button" class="btn btn-primary" (click)="back()" style="width:100%;">
+                    Back
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

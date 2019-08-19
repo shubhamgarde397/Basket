@@ -1,0 +1,39 @@
+{
+    "required": {
+        "http": "http",
+        "cors": "cors",
+        "url": "mongodb+srv://Shubham:leogarde1!@cluster0-htfef.mongodb.net/test?retryWrites=true&w=majority",
+        "url-new": "mongodb://localhost:27017",
+        "bodyParser": "body-parser",
+        "mongodb": "mongodb",
+        "express": "express"
+    },
+    "APICALLS": {
+        "GET": 0,
+        "POST": 1,
+        "DELETE": 2,
+        "UPDATE": 3,
+        "COUNT": 4,
+        "DELETE_DB": 5,
+        "LIMIT": 6,
+        "AGGREGATE": 7,
+        "DISTINCT": 8,
+        "INDEX": 9,
+        "UPDATESINGLE": 10
+    },
+    "Messages": {
+        "success": {
+            "update": "Data Updated Successfully!"
+        },
+        "error": {
+            "database": "Error connecting to the Database!",
+            "update": "Error in Updating the current data"
+        },
+        "serverStartMsg": "BASKET MAIN SERVER : 3000"
+    },
+    "sortBy": {
+        "byName": {
+            "name": 1
+        }
+    }
+}
