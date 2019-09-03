@@ -3,6 +3,7 @@ import { ApiCallsService } from 'src/app/common/services/ApiCalls/api-calls.serv
 import { Router } from '@angular/router';
 import { HandleDataService } from 'src/app/common/services/Data/handle-data.service';
 import { Location } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-manage-items',
@@ -21,7 +22,8 @@ export class ManageItemsComponent implements OnInit {
     public router: Router,
     public apiCallservice: ApiCallsService,
     public handleData: HandleDataService,
-    public _location: Location
+    public _location: Location,
+    private spinnerService: Ng4LoadingSpinnerService
   ) {
     this.USER = this.handleData.user;
     this.toMembers = this.handleData.commonArray;
@@ -31,6 +33,7 @@ export class ManageItemsComponent implements OnInit {
   }
 
   find() {
+    this.spinnerService.show();
     let value = {};
     value['family'] = this.handleData.famID;
     value['toName'] = this.USER;
@@ -42,6 +45,9 @@ export class ManageItemsComponent implements OnInit {
           this.lucky = false;
           this.itemlist = res;
         }
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 500);
 
       });
   }
@@ -59,6 +65,7 @@ export class ManageItemsComponent implements OnInit {
   }
 
   check() {
+    this.spinnerService.show();
     this.detailedList['family'] = this.handleData.famID;
     this.detailedList['Check'] = !this.detailedList.Check;
     this.apiCallservice.handleData_New('basket/checkItem', 1, 0, this.detailedList)
@@ -68,6 +75,9 @@ export class ManageItemsComponent implements OnInit {
         } else {
           alert('Item returned.')
         }
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 500);
       });
   }
 

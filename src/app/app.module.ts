@@ -14,6 +14,7 @@ import { AddItemsComponent } from './components/pages/add-items/add-items.compon
 import { ManageItemsComponent } from './components/pages/manage-items/manage-items.component';
 import { AllBasketComponent } from './components/pages/all-basket/all-basket.component';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
     FormsModule,
     HttpClientModule,
     HttpModule,
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [ApiCallsService, handleFunction],
   bootstrap: [AppComponent]

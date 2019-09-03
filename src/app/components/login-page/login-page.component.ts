@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { login } from './login';
 import { ApiCallsService } from 'src/app/common/services/ApiCalls/api-calls.service';
 import { HandleDataService } from 'src/app/common/services/Data/handle-data.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-login-page',
@@ -27,7 +28,8 @@ export class LoginPageComponent implements OnInit {
     public formBuilder: FormBuilder,
     public apiCallservice: ApiCallsService,
     public router: Router,
-    public handleData: HandleDataService
+    public handleData: HandleDataService,
+    private spinnerService: Ng4LoadingSpinnerService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   login({ value, valid }: { value: login, valid: boolean }) {
+    this.spinnerService.show();
     const username = value.username;
     const password = value.password;
     this.apiCallservice.handleData_New('login/getLoginDetailsbyid', 1, 0, { "famID": value.familyId, "username": username, "password": password })
@@ -52,7 +55,9 @@ export class LoginPageComponent implements OnInit {
         this.handleData.commonArray = res.userData;
         this.handleData.famID = value.familyId;
         this.handleData.findUser(value.username);
-        console.log(this.handleData);
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 1000);
         if (this.logindetailslist === true) {
           this.show = !this.show;
           this.router.navigate(['Home']);

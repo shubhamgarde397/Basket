@@ -5,6 +5,7 @@ import { ApiCallsService } from 'src/app/common/services/ApiCalls/api-calls.serv
 import { Router } from '@angular/router';
 import { HandleDataService } from 'src/app/common/services/Data/handle-data.service';
 import { Location } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-add-items',
@@ -34,7 +35,8 @@ export class AddItemsComponent implements OnInit {
     public apiCallservice: ApiCallsService,
     public formBuilder: FormBuilder,
     public handleData: HandleDataService,
-    public _location: Location
+    public _location: Location,
+    private spinnerService: Ng4LoadingSpinnerService
   ) {
     this.USER = this.handleData.user;
     this.toMembers = this.handleData.commonArray;
@@ -55,10 +57,15 @@ export class AddItemsComponent implements OnInit {
   }
 
   addItems({ value, valid }: { value: items, valid: boolean }) {
+    this.spinnerService.show();
     value['family'] = this.handleData.famID;
     this.apiCallservice.handleData_New('basket/addItem', 1, 0, value)
       .subscribe((res: any) => {
         if (res) {
+          setTimeout(() => {
+            this.spinnerService.hide();
+          }, 500);
+
           alert('Item Added Successfully.')
         }
       });

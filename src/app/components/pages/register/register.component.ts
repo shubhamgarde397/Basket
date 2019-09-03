@@ -6,6 +6,7 @@ import { data } from './data';
 import { ApiCallsService } from 'src/app/common/services/ApiCalls/api-calls.service';
 import { HandleDataService } from 'src/app/common/services/Data/handle-data.service';
 import { Location } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,8 @@ export class RegisterComponent implements OnInit {
     public apiCallservice: ApiCallsService,
     public router: Router,
     public handleData: HandleDataService,
-    public _location: Location
+    public _location: Location,
+    private spinnerService: Ng4LoadingSpinnerService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class RegisterComponent implements OnInit {
   }
 
   login({ value, valid }: { value: data, valid: boolean }) {
+    this.spinnerService.show();
     let memberData = { name: value.name, UserId: value.username };
     let loginData = { username: value.username, password: value.password, familyId: value.familyId };
     this.apiCallservice.handleData_New('login/register', 1, 0, { memberData: memberData, loginData: loginData })
@@ -52,6 +55,10 @@ export class RegisterComponent implements OnInit {
         if (res.done === 0) {
           alert('Registeration Successful!');
           this.router.navigate(['']);
+          setTimeout(() => {
+            this.spinnerService.hide();
+          }, 3000);
+
         }
 
       });
